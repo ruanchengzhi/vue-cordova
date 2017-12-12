@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-chrome-apps-sockets-tcp', 'cordova-plugin-sms'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-chrome-apps-sockets-tcp', 'cordova-plugin-sms', "cordova-plugin-email"];
 
 	exports.install = function (Vue, options) {
 
@@ -98,8 +98,10 @@ module.exports =
 		"./cordova-plugin-email.js": 6,
 		"./cordova-plugin-geolocation": 7,
 		"./cordova-plugin-geolocation.js": 7,
-		"./cordova-plugin-sms": 8,
-		"./cordova-plugin-sms.js": 8
+		"./cordova-plugin-jpush": 8,
+		"./cordova-plugin-jpush.js": 8,
+		"./cordova-plugin-sms": 9,
+		"./cordova-plugin-sms.js": 9
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -219,12 +221,12 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	    document.addEventListener('deviceready', function () {
 
-	        if (typeof window.sms === 'undefined') {
+	        if (typeof window.cordova.plugins.email === 'undefined') {
 	            return cb(false);
 	        }
 
 	        // pass through the sms object
-	        Vue.cordova.sms = window.sms;
+	        Vue.cordova.email = window.cordova.plugins.email;
 
 	        return cb(true);
 	    }, false);
@@ -252,6 +254,26 @@ module.exports =
 
 /***/ }),
 /* 8 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	    document.addEventListener('deviceready', function () {
+
+	        if (typeof window.plugins.jPushPlugin === 'undefined') {
+	            return cb(false);
+	        }
+
+	        // pass through the sms object
+	        Vue.cordova.jpush = window.plugins.jPushPlugin;
+
+	        return cb(true);
+	    }, false);
+	};
+
+/***/ }),
+/* 9 */
 /***/ (function(module, exports) {
 
 	'use strict';

@@ -6,7 +6,7 @@ const pluginsList = [
   'cordova-plugin-contacts',
   'cordova-plugin-chrome-apps-sockets-tcp',
   'cordova-plugin-sms',
-    'cordova-plugin-email'
+    "cordova-plugin-email"
 ]
 
 exports.install = (Vue, options) => {
@@ -14,7 +14,7 @@ exports.install = (Vue, options) => {
   // declare global Vue.cordova object
   Vue.cordova = Vue.cordova || {
     deviceready: false,
-    plugins: []
+      plugins: []
   }
 
   // Cordova events wrapper

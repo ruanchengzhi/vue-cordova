@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', "cordova-plugin-email"];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate'];
 
 	exports.install = function (Vue, options) {
 
@@ -99,7 +99,9 @@ module.exports =
 		"./cordova-plugin-jpush": 7,
 		"./cordova-plugin-jpush.js": 7,
 		"./cordova-plugin-sms": 8,
-		"./cordova-plugin-sms.js": 8
+		"./cordova-plugin-sms.js": 8,
+		"./cordova-plugin-walkiemate": 9,
+		"./cordova-plugin-walkiemate.js": 9
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -268,6 +270,26 @@ module.exports =
 
 	    return cb(true);
 	  }, false);
+	};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	    document.addEventListener('deviceready', function () {
+
+	        if (typeof window.plugins.sfsctech === 'undefined') {
+	            return cb(false);
+	        }
+
+	        // pass through the sms object
+	        Vue.cordova.sfsctech = window.plugins.sfsctech;
+
+	        return cb(true);
+	    }, false);
 	};
 
 /***/ })

@@ -5,7 +5,8 @@ const pluginsList = [
   'cordova-plugin-geolocation',
   'cordova-plugin-contacts',
   'cordova-plugin-sms',
-    "cordova-plugin-email"
+  'cordova-plugin-email',
+  'cordova-plugin-walkiemate'
 ]
 
 exports.install = (Vue, options) => {

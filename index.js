@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser'];
 
 	exports.install = function (Vue, options) {
 
@@ -96,12 +96,14 @@ module.exports =
 		"./cordova-plugin-email.js": 5,
 		"./cordova-plugin-geolocation": 6,
 		"./cordova-plugin-geolocation.js": 6,
-		"./cordova-plugin-jpush": 7,
-		"./cordova-plugin-jpush.js": 7,
-		"./cordova-plugin-sms": 8,
-		"./cordova-plugin-sms.js": 8,
-		"./cordova-plugin-walkiemate": 9,
-		"./cordova-plugin-walkiemate.js": 9
+		"./cordova-plugin-inappbrowser": 7,
+		"./cordova-plugin-inappbrowser.js": 7,
+		"./cordova-plugin-jpush": 8,
+		"./cordova-plugin-jpush.js": 8,
+		"./cordova-plugin-sms": 9,
+		"./cordova-plugin-sms.js": 9,
+		"./cordova-plugin-walkiemate": 10,
+		"./cordova-plugin-walkiemate.js": 10
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -241,6 +243,26 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	    document.addEventListener('deviceready', function () {
 
+	        if (typeof cordova.InAppBrowser === 'undefined') {
+	            return cb(false);
+	        }
+
+	        // pass through the sms object
+	        Vue.cordova.InAppBrowser = cordova.InAppBrowser;
+
+	        return cb(true);
+	    }, false);
+	};
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	    document.addEventListener('deviceready', function () {
+
 	        if (typeof window.plugins.jPushPlugin === 'undefined') {
 	            return cb(false);
 	        }
@@ -253,7 +275,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -273,7 +295,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	'use strict';

@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information'];
 
 	exports.install = function (Vue, options) {
 
@@ -100,10 +100,12 @@ module.exports =
 		"./cordova-plugin-inappbrowser.js": 7,
 		"./cordova-plugin-jpush": 8,
 		"./cordova-plugin-jpush.js": 8,
-		"./cordova-plugin-sms": 9,
-		"./cordova-plugin-sms.js": 9,
-		"./cordova-plugin-walkiemate": 10,
-		"./cordova-plugin-walkiemate.js": 10
+		"./cordova-plugin-network-information": 9,
+		"./cordova-plugin-network-information.js": 9,
+		"./cordova-plugin-sms": 10,
+		"./cordova-plugin-sms.js": 10,
+		"./cordova-plugin-walkiemate": 11,
+		"./cordova-plugin-walkiemate.js": 11
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -178,6 +180,7 @@ module.exports =
 	      model: null,
 	      platform: null,
 	      uuid: null,
+	      imei: null,
 	      version: null,
 	      manufacturer: null,
 	      isVirtual: null,
@@ -283,6 +286,24 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	  document.addEventListener('deviceready', function () {
 
+	    if (typeof navigator.connection === 'undefined') {
+	      return cb(false);
+	    }
+	    // pass through the sms object
+	    Vue.cordova.connection = navigator.connection;
+	    return cb(true);
+	  }, false);
+	};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	  document.addEventListener('deviceready', function () {
+
 	    if (typeof window.sms === 'undefined') {
 	      return cb(false);
 	    }
@@ -295,7 +316,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	'use strict';

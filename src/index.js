@@ -7,7 +7,8 @@ const pluginsList = [
   'cordova-plugin-sms',
   'cordova-plugin-email',
   'cordova-plugin-walkiemate',
-    'cordova-plugin-inappbrowser'
+    'cordova-plugin-inappbrowser',
+    'cordova-plugin-network-information'
 ]
 
 exports.install = (Vue, options) => {

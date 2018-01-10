@@ -11,6 +11,7 @@ exports.install = function (Vue, options, cb) {
       model: null,
       platform: null,
       uuid: null,
+      imei: null,
       version: null,
       manufacturer: null,
       isVirtual: null,

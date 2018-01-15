@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information', 'cordova-plugin-badge'];
 
 	exports.install = function (Vue, options) {
 
@@ -86,26 +86,28 @@ module.exports =
 /***/ (function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./cordova-plugin-camera": 2,
-		"./cordova-plugin-camera.js": 2,
-		"./cordova-plugin-contacts": 3,
-		"./cordova-plugin-contacts.js": 3,
-		"./cordova-plugin-device": 4,
-		"./cordova-plugin-device.js": 4,
-		"./cordova-plugin-email": 5,
-		"./cordova-plugin-email.js": 5,
-		"./cordova-plugin-geolocation": 6,
-		"./cordova-plugin-geolocation.js": 6,
-		"./cordova-plugin-inappbrowser": 7,
-		"./cordova-plugin-inappbrowser.js": 7,
-		"./cordova-plugin-jpush": 8,
-		"./cordova-plugin-jpush.js": 8,
-		"./cordova-plugin-network-information": 9,
-		"./cordova-plugin-network-information.js": 9,
-		"./cordova-plugin-sms": 10,
-		"./cordova-plugin-sms.js": 10,
-		"./cordova-plugin-walkiemate": 11,
-		"./cordova-plugin-walkiemate.js": 11
+		"./cordova-plugin-badge": 2,
+		"./cordova-plugin-badge.js": 2,
+		"./cordova-plugin-camera": 3,
+		"./cordova-plugin-camera.js": 3,
+		"./cordova-plugin-contacts": 4,
+		"./cordova-plugin-contacts.js": 4,
+		"./cordova-plugin-device": 5,
+		"./cordova-plugin-device.js": 5,
+		"./cordova-plugin-email": 6,
+		"./cordova-plugin-email.js": 6,
+		"./cordova-plugin-geolocation": 7,
+		"./cordova-plugin-geolocation.js": 7,
+		"./cordova-plugin-inappbrowser": 8,
+		"./cordova-plugin-inappbrowser.js": 8,
+		"./cordova-plugin-jpush": 9,
+		"./cordova-plugin-jpush.js": 9,
+		"./cordova-plugin-network-information": 10,
+		"./cordova-plugin-network-information.js": 10,
+		"./cordova-plugin-sms": 11,
+		"./cordova-plugin-sms.js": 11,
+		"./cordova-plugin-walkiemate": 12,
+		"./cordova-plugin-walkiemate.js": 12
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -130,6 +132,26 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	  document.addEventListener('deviceready', function () {
 
+	    if (typeof window.sms === 'undefined') {
+	      return cb(false);
+	    }
+
+	    // pass through the sms object
+	    Vue.cordova.badge = cordova.plugins.notification.badge;
+
+	    return cb(true);
+	  }, false);
+	};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	  document.addEventListener('deviceready', function () {
+
 	    if (typeof navigator.camera === 'undefined') {
 	      return cb(false);
 	    }
@@ -142,7 +164,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -162,7 +184,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -198,7 +220,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -218,7 +240,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -238,7 +260,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -258,7 +280,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -278,7 +300,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -296,7 +318,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -316,7 +338,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	'use strict';

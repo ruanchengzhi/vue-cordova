@@ -1,7 +1,7 @@
 exports.install = function (Vue, options, cb) {
   document.addEventListener('deviceready', () => {
 
-    if (typeof window.sms === 'undefined') {
+    if (typeof cordova.plugins.notification.badge === 'undefined') {
       return cb(false)
     }
 

@@ -1,15 +1,16 @@
 // list here all supported plugins
 const pluginsList = [
-    'cordova-plugin-camera',
-    'cordova-plugin-device',
-    'cordova-plugin-geolocation',
-    'cordova-plugin-contacts',
-    'cordova-plugin-sms',
-    'cordova-plugin-email',
-    'cordova-plugin-walkiemate',
-    'cordova-plugin-inappbrowser',
-    'cordova-plugin-network-information',
-    'cordova-plugin-badge'
+'cordova-plugin-camera',
+'cordova-plugin-device',
+'cordova-plugin-geolocation',
+'cordova-plugin-contacts',
+'cordova-plugin-sms',
+'cordova-plugin-email',
+'cordova-plugin-walkiemate',
+'cordova-plugin-inappbrowser',
+'cordova-plugin-network-information',
+'cordova-plugin-badge',
+'cordova-plugin-base64togallery'
 ]
 
 exports.install = (Vue, options) => {

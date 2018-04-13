@@ -10,6 +10,7 @@ const pluginsList = [
 'cordova-plugin-inappbrowser',
 'cordova-plugin-network-information',
 'cordova-plugin-badge',
+'cordova-plugin-splashscreen',
 'cordova-plugin-base64togallery'
 ]
 

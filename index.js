@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-base64togallery'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery'];
 
 	exports.install = function (Vue, options) {
 
@@ -108,8 +108,10 @@ module.exports =
 		"./cordova-plugin-network-information.js": 11,
 		"./cordova-plugin-sms": 12,
 		"./cordova-plugin-sms.js": 12,
-		"./cordova-plugin-walkiemate": 13,
-		"./cordova-plugin-walkiemate.js": 13
+		"./cordova-plugin-splashscreen": 13,
+		"./cordova-plugin-splashscreen.js": 13,
+		"./cordova-plugin-walkiemate": 14,
+		"./cordova-plugin-walkiemate.js": 14
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -361,6 +363,26 @@ module.exports =
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	  document.addEventListener('deviceready', function () {
+
+	    if (typeof navigator.splashscreen === 'undefined') {
+	      return cb(false);
+	    }
+
+	    // pass through the contacts object
+	    Vue.cordova.splashscreen = navigator.splashscreen;
+
+	    return cb(true);
+	  }, false);
+	};
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 	'use strict';

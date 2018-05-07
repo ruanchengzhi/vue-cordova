@@ -11,7 +11,8 @@ const pluginsList = [
 'cordova-plugin-network-information',
 'cordova-plugin-badge',
 'cordova-plugin-splashscreen',
-'cordova-plugin-base64togallery'
+'cordova-plugin-base64togallery',
+    'cordova-plugin-calendar'
 ]
 
 exports.install = (Vue, options) => {

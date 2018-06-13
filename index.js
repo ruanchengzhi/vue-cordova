@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar', 'cordova-plugins-keychainstore'];
 
 	exports.install = function (Vue, options) {
 
@@ -106,14 +106,16 @@ module.exports =
 		"./cordova-plugin-inappbrowser.js": 10,
 		"./cordova-plugin-jpush": 11,
 		"./cordova-plugin-jpush.js": 11,
-		"./cordova-plugin-network-information": 12,
-		"./cordova-plugin-network-information.js": 12,
-		"./cordova-plugin-sms": 13,
-		"./cordova-plugin-sms.js": 13,
-		"./cordova-plugin-splashscreen": 14,
-		"./cordova-plugin-splashscreen.js": 14,
-		"./cordova-plugin-walkiemate": 15,
-		"./cordova-plugin-walkiemate.js": 15
+		"./cordova-plugin-keychainstore": 12,
+		"./cordova-plugin-keychainstore.js": 12,
+		"./cordova-plugin-network-information": 13,
+		"./cordova-plugin-network-information.js": 13,
+		"./cordova-plugin-sms": 14,
+		"./cordova-plugin-sms.js": 14,
+		"./cordova-plugin-splashscreen": 15,
+		"./cordova-plugin-splashscreen.js": 15,
+		"./cordova-plugin-walkiemate": 16,
+		"./cordova-plugin-walkiemate.js": 16
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -352,6 +354,25 @@ module.exports =
 	'use strict';
 
 	exports.install = function (Vue, options, cb) {
+	    document.addEventListener('deviceready', function () {
+
+	        if (typeof window.cordova.plugins.KeychainStore === 'undefined') {
+	            return cb(false);
+	        }
+
+	        // pass through the sms object
+	        Vue.cordova.KeychainStore = window.cordova.plugins.KeychainStore;
+	        return cb(true);
+	    }, false);
+	};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
 	  document.addEventListener('deviceready', function () {
 
 	    if (typeof navigator.connection === 'undefined') {
@@ -364,7 +385,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -384,7 +405,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -404,7 +425,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	'use strict';

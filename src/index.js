@@ -13,7 +13,8 @@ const pluginsList = [
     'cordova-plugin-splashscreen',
     'cordova-plugin-base64togallery',
     'cordova-plugin-calendar',
-    'cordova-plugin-keychainstore'
+    'cordova-plugin-keychainstore',
+    'cordova-plugin-logtofile'
 ]
 
 exports.install = (Vue, options) => {

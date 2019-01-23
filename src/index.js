@@ -8,6 +8,7 @@ const pluginsList = [
     'cordova-plugin-email',
     'cordova-plugin-walkiemate',
     'cordova-plugin-inappbrowser',
+    'cordova-plugin-jailbreakcheck.js',
     'cordova-plugin-network-information',
     'cordova-plugin-badge',
     'cordova-plugin-splashscreen',

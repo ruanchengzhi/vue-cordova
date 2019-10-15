@@ -15,7 +15,8 @@ const pluginsList = [
     'cordova-plugin-base64togallery',
     'cordova-plugin-calendar',
     'cordova-plugin-keychainstore',
-    'cordova-plugin-logtofile'
+    'cordova-plugin-logtofile',
+    'cordova-plugin-wechat'
 ]
 
 exports.install = (Vue, options) => {

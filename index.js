@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-jailbreakcheck.js', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar', 'cordova-plugin-keychainstore', 'cordova-plugin-logtofile'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-jailbreakcheck.js', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar', 'cordova-plugin-keychainstore', 'cordova-plugin-logtofile', 'cordova-plugin-wechat'];
 
 	exports.install = function (Vue, options) {
 
@@ -119,7 +119,9 @@ module.exports =
 		"./cordova-plugin-splashscreen": 17,
 		"./cordova-plugin-splashscreen.js": 17,
 		"./cordova-plugin-walkiemate": 18,
-		"./cordova-plugin-walkiemate.js": 18
+		"./cordova-plugin-walkiemate.js": 18,
+		"./cordova-plugin-wechat": 19,
+		"./cordova-plugin-wechat.js": 19
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -398,12 +400,12 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	  document.addEventListener('deviceready', function () {
 
-	    if (typeof window.sms === 'undefined') {
+	    if (typeof window.logToFile === 'undefined') {
 	      return cb(false);
 	    }
 
 	    // pass through the sms object
-	    Vue.cordova.sms = window.logToFile;
+	    Vue.cordova.logToFile = window.logToFile;
 
 	    return cb(true);
 	  }, false);
@@ -484,6 +486,26 @@ module.exports =
 	        Vue.cordova.sfsctech = window.cordova.plugins.sfsctech;
 	        return cb(true);
 	    }, false);
+	};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	  document.addEventListener('deviceready', function () {
+
+	    if (typeof window.Wechat === 'undefined') {
+	      return cb(false);
+	    }
+
+	    // pass through the sms object
+	    Vue.cordova.Wechat = window.Wechat;
+
+	    return cb(true);
+	  }, false);
 	};
 
 /***/ })

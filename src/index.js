@@ -16,6 +16,7 @@ const pluginsList = [
     'cordova-plugin-calendar',
     'cordova-plugin-keychainstore',
     'cordova-plugin-logtofile',
+    'cordova-plugin-http',
     'cordova-plugin-wechat'
 ]
 

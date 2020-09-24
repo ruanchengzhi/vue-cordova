@@ -48,7 +48,7 @@ module.exports =
 	'use strict';
 
 	// list here all supported plugins
-	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-jailbreakcheck.js', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar', 'cordova-plugin-keychainstore', 'cordova-plugin-logtofile', 'cordova-plugin-wechat'];
+	var pluginsList = ['cordova-plugin-camera', 'cordova-plugin-device', 'cordova-plugin-geolocation', 'cordova-plugin-contacts', 'cordova-plugin-sms', 'cordova-plugin-email', 'cordova-plugin-walkiemate', 'cordova-plugin-inappbrowser', 'cordova-plugin-jailbreakcheck.js', 'cordova-plugin-network-information', 'cordova-plugin-badge', 'cordova-plugin-splashscreen', 'cordova-plugin-base64togallery', 'cordova-plugin-calendar', 'cordova-plugin-keychainstore', 'cordova-plugin-logtofile', 'cordova-plugin-http', 'cordova-plugin-wechat'];
 
 	exports.install = function (Vue, options) {
 
@@ -102,26 +102,28 @@ module.exports =
 		"./cordova-plugin-email.js": 8,
 		"./cordova-plugin-geolocation": 9,
 		"./cordova-plugin-geolocation.js": 9,
-		"./cordova-plugin-inappbrowser": 10,
-		"./cordova-plugin-inappbrowser.js": 10,
-		"./cordova-plugin-jailbreakcheck": 11,
-		"./cordova-plugin-jailbreakcheck.js": 11,
-		"./cordova-plugin-jpush": 12,
-		"./cordova-plugin-jpush.js": 12,
-		"./cordova-plugin-keychainstore": 13,
-		"./cordova-plugin-keychainstore.js": 13,
-		"./cordova-plugin-logtofile": 14,
-		"./cordova-plugin-logtofile.js": 14,
-		"./cordova-plugin-network-information": 15,
-		"./cordova-plugin-network-information.js": 15,
-		"./cordova-plugin-sms": 16,
-		"./cordova-plugin-sms.js": 16,
-		"./cordova-plugin-splashscreen": 17,
-		"./cordova-plugin-splashscreen.js": 17,
-		"./cordova-plugin-walkiemate": 18,
-		"./cordova-plugin-walkiemate.js": 18,
-		"./cordova-plugin-wechat": 19,
-		"./cordova-plugin-wechat.js": 19
+		"./cordova-plugin-http": 10,
+		"./cordova-plugin-http.js": 10,
+		"./cordova-plugin-inappbrowser": 11,
+		"./cordova-plugin-inappbrowser.js": 11,
+		"./cordova-plugin-jailbreakcheck": 12,
+		"./cordova-plugin-jailbreakcheck.js": 12,
+		"./cordova-plugin-jpush": 13,
+		"./cordova-plugin-jpush.js": 13,
+		"./cordova-plugin-keychainstore": 14,
+		"./cordova-plugin-keychainstore.js": 14,
+		"./cordova-plugin-logtofile": 15,
+		"./cordova-plugin-logtofile.js": 15,
+		"./cordova-plugin-network-information": 16,
+		"./cordova-plugin-network-information.js": 16,
+		"./cordova-plugin-sms": 17,
+		"./cordova-plugin-sms.js": 17,
+		"./cordova-plugin-splashscreen": 18,
+		"./cordova-plugin-splashscreen.js": 18,
+		"./cordova-plugin-walkiemate": 19,
+		"./cordova-plugin-walkiemate.js": 19,
+		"./cordova-plugin-wechat": 20,
+		"./cordova-plugin-wechat.js": 20
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -322,6 +324,25 @@ module.exports =
 	exports.install = function (Vue, options, cb) {
 	    document.addEventListener('deviceready', function () {
 
+	        if (typeof window.cordova.plugins.http === 'undefined') {
+	            return cb(false);
+	        }
+
+	        // pass through the sms object
+	        Vue.cordova.http = window.cordova.plugin.http;
+	        return cb(true);
+	    }, false);
+	};
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	exports.install = function (Vue, options, cb) {
+	    document.addEventListener('deviceready', function () {
+
 	        if (typeof cordova.InAppBrowser === 'undefined') {
 	            return cb(false);
 	        }
@@ -334,7 +355,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -353,7 +374,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -373,7 +394,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -392,7 +413,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -412,7 +433,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -430,7 +451,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -450,7 +471,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -470,7 +491,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports) {
 
 	'use strict';
@@ -489,7 +510,7 @@ module.exports =
 	};
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 	'use strict';
